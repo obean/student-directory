@@ -29,7 +29,7 @@ def input_students
     students << {name: name, cohort: :november}
     puts "Now we have #{students.count} students"
     # get another name from the user
-    name = gets.chomp
+    name = gets.strip
   end
   # return the array of students
   students
@@ -114,6 +114,10 @@ def print_is_footer_plural(names)
 
   end
 end
+
+# 10 replace chomp() with another method
+# I just used gets.stip() although instructions said i would have to pass it an argument..
+
 students = input_students
 print_header
 print_while(students)
