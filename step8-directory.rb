@@ -46,8 +46,10 @@ end
 
 
 #2.
-def print_begins_with_t(names)
-  names.each {|student| puts "#{student[:name]}, #{student[:cohort]}" unless student[:name].split('')[0].downcase != "t"}
+def print_begins_with(names)
+  puts "what letter would you like to view?"
+  letter = gets.chomp.downcase
+  names.each {|student| puts "#{student[:name]}, #{student[:cohort]}" unless student[:name].split('')[0].downcase != letter}
 end
 
 #3. only print with less than 12 letters
@@ -68,6 +70,8 @@ end
 def print_center(names)
   names.each {|student| puts "#{student[:name]}, #{student[:cohort]}".center(100)}
 end
+
+
 #7 allow input of cohort information
 def cohorts(month)
   return month if month
@@ -94,8 +98,31 @@ puts "cohort = #{cohort}"
   students
 end
 
+#8 view by cohort XXX
+def view_by_cohort
+  students.map {|student| }
+end
 
-students = input_students_and_cohort
+#9 plural/singular
+def print_is_footer_plural(names)
+  if  (names.length) > 1
+    puts  "Overall, we have #{names.count} great students"
+  elsif (names.count) == 1
+    puts "Overall, we have #{names.count} great student"
+  else
+    puts "We have no students"
+
+  end
+end
+students = input_students
 print_header
 print_while(students)
-print_footer(students)
+print_is_footer_plural(students)
+
+ # list of students to input
+=begin
+Tom, June
+Sarah, June
+Leslie, April
+Gilgamesh, january
+=end
