@@ -1,3 +1,4 @@
+require './printing_by_cohort.rb'#!/usr/bin/env ruby -wKU
 
 
 
@@ -99,8 +100,10 @@ puts "cohort = #{cohort}"
 end
 
 #8 view by cohort XXX
-def view_by_cohort
-  students.map {|student| }
+def print_by_cohort(names)
+  cohorts = {}
+  names.each {|student|cohorts[student[:cohort]] = [] }.each {|student| cohorts[student[:cohort]].push(student[:name])}
+  cohorts.each {|key, value| puts "students in #{key} cohort \n------------"; value.each {|name| puts name}; puts "------------" }
 end
 
 #9 plural/singular
@@ -115,12 +118,14 @@ def print_is_footer_plural(names)
   end
 end
 
+
+
 # 10 replace chomp() with another method
 # I just used gets.stip() although instructions said i would have to pass it an argument..
 
 students = input_students
 print_header
-print_while(students)
+print_by_cohort(students)
 print_is_footer_plural(students)
 
  # list of students to input
