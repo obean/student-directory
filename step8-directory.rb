@@ -1,4 +1,4 @@
-require './printing_by_cohort.rb'#!/usr/bin/env ruby -wKU
+
 
 
 
@@ -14,7 +14,7 @@ end
 =end
 # and print them
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+  puts "Overall, we have #{names.count} great students" unless names.count <1
 end
 
 def input_students
@@ -30,13 +30,11 @@ def input_students
     students << {name: name, cohort: :november}
     puts "Now we have #{students.count} students"
     # get another name from the user
-    name = gets.strip
+    name = gets.chomp
   end
   # return the array of students
   students
 end
-
-
 # Stage 8 challenges completed below
 
 #1. number the list of students
@@ -72,7 +70,6 @@ def print_center(names)
   names.each {|student| puts "#{student[:name]}, #{student[:cohort]}".center(100)}
 end
 
-
 #7 allow input of cohort information
 def cohorts(month)
   return month if month
@@ -85,8 +82,6 @@ def input_students_and_cohort
   students = []
   name = gets.chomp.split(",")
   cohort = name[1] || nil
-
-
   while name.length != 0
 puts "cohort = #{cohort}"
     # add the student hash to the array
@@ -117,6 +112,11 @@ def print_is_footer_plural(names)
 
   end
 end
+#
+def only_print_if_students(names)
+  names.each_with_index {|student, index| puts "#{index}. #{student[:name]}"} unless names.count < 1
+
+end
 
 
 
@@ -124,9 +124,9 @@ end
 # I just used gets.stip() although instructions said i would have to pass it an argument..
 
 students = input_students
-print_header
-print_by_cohort(students)
-print_is_footer_plural(students)
+print_header unless students.count < 1
+only_print_if_students(students)
+print_footer(students)
 
  # list of students to input
 =begin
