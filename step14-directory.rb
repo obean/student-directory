@@ -93,13 +93,15 @@ end
 def save_students
   puts "what file would uou like to use?"
   filename = gets.chomp
-  file = CSV.open(filename, "w")
-  @students.each {|student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
-}
+  CSV.open(filename, "w") do |csv|
+    @students.each {|student| csv << ["#{student[:name]}", "#{student[:data]}"]}
+#  @students.each {|student|
+#    student_data = [student[:name], student[:cohort]]
+    #csv_line = student_data.join(",")
+#    file.puts csv_line
+
 puts "students saved successfully "
+end
 end
 
 def interactive_menu
