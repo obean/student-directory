@@ -70,6 +70,7 @@ def print_menu
   puts "2. Show the students"
   puts "3. Save the students to students.csv"
   puts "4. Load the list from students.csv"
+  puts "5. Show the source code for this program"
   puts "9. Exit"
 end
 
@@ -83,10 +84,18 @@ def process(selection)
     save_students
   when "4"
     load_students
+  when "5"
+    quine
   when "9"
     exit
   else
     puts "I don't know what you meant, try again"
+  end
+end
+
+def quine
+  File.open(File.basename($0)) do |file|
+    file.readlines.each {|line| puts line}
   end
 end
 
